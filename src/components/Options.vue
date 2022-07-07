@@ -6,14 +6,16 @@ const data: FormData = {
   lastName: "",
   age: 0,
 };
+
+defineEmits(["next-page"]);
 </script>
 
 <template>
   <Card>
-    <template v-slot:title> Personal Information </template>
-    <template v-slot:subtitle> Enter your personal information </template>
+    <template #title> Personal Information </template>
+    <template #subtitle> Enter your personal information </template>
 
-    <template v-slot:content>
+    <template #content>
       <div class="p-fluid">
         <div class="field">
           <label for="firstname">Firstname</label>
@@ -32,9 +34,8 @@ const data: FormData = {
       </div>
     </template>
 
-    <template v-slot:footer>
-      <div class="grid grid-nogutter justify-content-between">
-        <i></i>
+    <template #footer>
+      <div class="flex justify-content-end">
         <Button
           label="Next"
           @click="

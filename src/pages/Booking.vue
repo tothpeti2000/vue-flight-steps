@@ -16,6 +16,8 @@ const steps = ref([
 const formObject = ref({});
 
 const nextPage = (event: any) => {
+  console.log(event);
+
   for (let field in event.formData) {
     //formObject.value[field] = event.formData[field];
   }
@@ -29,9 +31,11 @@ const prevPage = (event: any) => {
 </script>
 
 <template>
-  <div class="card">
-    <Steps :model="steps" :readonly="true" />
-  </div>
+  <Card class="mb-2">
+    <template #content>
+      <Steps :model="steps" :readonly="true" />
+    </template>
+  </Card>
 
   <RouterView
     v-slot="{ Component }"

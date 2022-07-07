@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { FormData } from "@/interfaces/formData";
+defineProps<{
+  formData: any;
+}>();
 
-const formData: FormData | any = {};
 defineEmits(["prev-page", "complete"]);
 </script>
 
