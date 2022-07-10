@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
-const Booking = () => import("../pages/Booking.vue");
-const Options = () => import("../components/Options.vue");
-const Flights = () => import("../components/Flights.vue");
+const BookingProgress = () => import("../pages/booking/BookingProgress.vue");
+const Start = () => import("../pages/booking/Start.vue");
+const Flights = () => import("../pages/booking/Flights.vue");
+const Passengers = () => import("../pages/booking/Passengers.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,17 +16,22 @@ const router = createRouter({
     {
       path: "/booking",
       name: "booking",
-      component: Booking,
+      component: BookingProgress,
       children: [
         {
           path: "start",
           name: "bookingStart",
-          component: Options,
+          component: Start,
         },
         {
           path: "flights",
           name: "bookingFlights",
           component: Flights,
+        },
+        {
+          path: "passengers",
+          name: "passengers",
+          component: Passengers,
         },
       ],
     },

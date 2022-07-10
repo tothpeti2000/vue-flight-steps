@@ -11,22 +11,20 @@ const steps = ref([
     label: "Flights",
     to: "/booking/flights",
   },
+  {
+    label: "Passengers",
+    to: "/booking/passengers",
+  },
 ]);
-
-const formObject = ref({});
 
 const nextPage = (event: any) => {
   console.log(event);
 
-  for (let field in event.formData) {
-    //formObject.value[field] = event.formData[field];
-  }
-
-  router.push(steps.value[event.pageIndex + 1].to);
+  router.push(steps.value[event.pageIdx + 1].to);
 };
 
 const prevPage = (event: any) => {
-  router.push(steps.value[event.pageIndex - 1].to);
+  router.push(steps.value[event.pageIdx - 1].to);
 };
 </script>
 
@@ -37,14 +35,17 @@ const prevPage = (event: any) => {
     </template>
   </Card>
 
-  <RouterView
-    v-slot="{ Component }"
-    :formData="formObject"
-    @prevPage="prevPage($event)"
-    @nextPage="nextPage($event)"
-  >
-    <KeepAlive>
-      <component :is="Component" />
-    </KeepAlive>
-  </RouterView>
+  <Card>
+    <template #content>
+      <RouterView
+        v-slot="{ Component }"
+        @prevPage="prevPage($event)"
+        @nextPage="nextPage($event)"
+      >
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </RouterView>
+    </template>
+  </Card>
 </template>
